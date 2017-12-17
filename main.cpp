@@ -1,11 +1,9 @@
 //
 //  main.cpp
-//  Simonacci
+//  Fibonacci
 //
 //  Created by Simone Cimolato on 18/12/16.
-//  Copyright © 2016 Simone Cimolato. All rights reserved.
-//
-//  Use this code, but do not redistribuite it.
+//  Copyright © 2017 Simone Cimolato. All rights reserved.
 //
 
 #include <iostream>
@@ -55,19 +53,24 @@ operator<<( std::ostream& dest, __int128_t value )
 
 int main(int argc, const char * argv[]) {
     
-    short int terms;
+    int terms;
     
-    cout<<"How many terms? ";
+    cout<<"How many terms? (max: 184) ";
     cin>>terms;
+    
+    if (cin.fail() or terms < 1 or terms > 184){
+        cout<<"Invalid input"<<endl;
+        return 1;
+    }
     
     __int128 num1 = 1;
     __int128 num2 = 0;
     
-    for (int i = 0; i < terms; i++){
+    for (int i = 0; i < terms; i+=2){
         num1 += num2;
-        cout<<num1<<endl;
+        cout<<i+1<<".    "<<num1<<endl;
         num2 += num1;
-        cout<<num2<<endl;
+        cout<<i+2<<".    "<<num2<<endl;
     }
     return 0;
 }
